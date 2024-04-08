@@ -1,0 +1,7 @@
+{
+  "@@locale": "en",
+  "home_welcome": "Welcome to Home Page",
+  "@home_welcome": {
+    "description": "A welcome message on the home page"
+  }
+}

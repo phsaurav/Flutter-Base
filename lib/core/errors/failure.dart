@@ -1,9 +1,25 @@
+/// This file contains the definition of various failure classes used in the application.
+library;
+
 import 'package:equatable/equatable.dart';
 
-// Enumerations
-enum NetworkFailureReason { canceled, timedOut, responseError }
+/// Enumerations for network failure reasons.
+enum NetworkFailureReason {
+  /// The request was canceled.
+  canceled,
 
-enum CacheFailureReason { noCacheFound }
+  /// The request timed out.
+  timedOut,
+
+  /// There was an error in the response.
+  responseError
+}
+
+/// Enumeration for cache failure reasons.
+enum CacheFailureReason {
+  /// No cache was found.
+  noCacheFound
+}
 
 /// Represents a base class for all failures in the application.
 abstract class Failure extends Equatable implements Exception {
@@ -38,7 +54,7 @@ class NetworkFailure extends AppHttpClientFailure {
   const NetworkFailure({
     required this.reason,
     required super.exception,
-    super.message = "Network Failure",
+    String message = "Network Failure",
   });
 
   /// Creates a network failure due to request cancellation.

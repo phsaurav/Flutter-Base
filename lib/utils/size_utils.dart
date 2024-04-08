@@ -67,22 +67,29 @@ double percentageScreenHeight(BuildContext context, double percentage) {
 }
 
 //* Number size extension
+/// Extension on [num] to provide size-related utility functions.
 extension SizeExtension on num {
+  /// Calculates the scaled width based on the percentage of the screen width.
   double sw(BuildContext context) => percentageScreenWidth(context, toDouble());
+
+  /// Calculates the scaled width based on the percentage of the absolute screen width.
   double get asw {
     return percentageOfAbsoluteScreenWidth(toDouble());
   }
 
+  /// Calculates the scaled height based on the percentage of the screen height.
   double sh(BuildContext context) =>
       percentageScreenHeight(context, toDouble());
 
+  /// Calculates the scaled height based on the percentage of the available screen height.
   double ash(BuildContext context) =>
       percentageOfAvailableScreenHeight(context, toDouble());
 
+  /// Calculates the scaled width based on the width ratio.
   double get wr {
-    // *Size of the screen we designed on
+    // Size of the screen we designed on
     const double baseScreenWidth = 392;
-    // *Max size of screen the ratio will increase
+    // Max size of screen the ratio will increase
     const double maxScreenWidth = 500;
 
     return min(
@@ -91,20 +98,24 @@ extension SizeExtension on num {
   }
 }
 
-//* Double size extension
+/// Extension on [double] to provide size-related utility functions.
 extension SizeExtensionDouble on double {
+  /// Calculates the scaled width based on the percentage of the screen width.
   double sw(BuildContext context) => percentageScreenWidth(context, this);
 
+  /// Calculates the scaled width based on the percentage of the absolute screen width.
   double get asw {
     return percentageOfAbsoluteScreenWidth(this);
   }
 
+  /// Calculates the scaled height based on the percentage of the screen height.
   double sh(BuildContext context) => percentageScreenHeight(context, this);
 
+  /// Calculates the scaled height based on the percentage of the available screen height.
   double ash(BuildContext context) =>
       percentageOfAvailableScreenHeight(context, this);
 
-  //* Width ratio mainly for responsive font size
+  /// Calculates the scaled width based on the width ratio.
   double get wr {
     // Size of the screen we designed on
     const double baseScreenWidth = 430;
@@ -117,16 +128,18 @@ extension SizeExtensionDouble on double {
   }
 }
 
+/// Returns the physical width of the screen in logical pixels.
 double physicalScreenWidth() {
   return WidgetsBinding
           .instance.platformDispatcher.views.first.physicalSize.width /
       WidgetsBinding.instance.platformDispatcher.views.first.devicePixelRatio;
 }
 
+/// Returns the width ratio of the screen.
 double wRatio() {
-  // *Size of the screen we designed on
+  // Size of the screen we designed on
   const double baseScreenWidth = 392;
-  // *Max size of screen the ratio will increase
+  // Max size of screen the ratio will increase
   const double maxScreenWidth = 500;
 
   return min(physicalScreenWidth() / baseScreenWidth,
